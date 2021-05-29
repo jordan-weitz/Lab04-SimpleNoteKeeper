@@ -26,21 +26,49 @@ public class ArithmeticCalculatorServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-
-
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         getServletContext().getRequestDispatcher("/WEB-INF/ArithmeticCalculator.jsp").forward(request, response);
     }
 
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String calc = request.getParameter("calc");
+        int firstnum;
+        int secondnum;
         
-    }
+        try {
+            
+            firstnum = Integer.parseInt(request.getParameter("first_num"));
+            secondnum = Integer.parseInt(request.getParameter("second_num"));
+            
 
+            if (calc != null && calc.equals("plus")) {
+                int result = firstnum + secondnum;
+                request.setAttribute("message", "Calculation equals " + result);
+            } else if (calc != null && calc.equals("minus")) {
+                int result = firstnum - secondnum;
+                request.setAttribute("message", "Calculation equals " + result);
+            } else if (calc != null && calc.equals("times")) {
+                int result = firstnum * secondnum;
+                request.setAttribute("message", "Calculation equals " + result);
+            } else if (calc != null && calc.equals("mod")) {
+                int result = firstnum % secondnum;
+                request.setAttribute("message", "Calculation equals " + result);
+            } else {
+                request.setAttribute("message", "Invalid Entry. Please enter a valid Integer");
+                return;
+            }
+        } catch (Exception e) {
+            request.setAttribute("message", "Invalid Entry. Please enter a valid integer");
+        } finally {
+            request.setAttribute("firstNum", firstnum);
+        request.setAttribute("secondNum", secondnum);
+        }
+        getServletContext().getRequestDispatcher("/WEB-INF/ArithmeticCalculator.jsp").forward(request, response);
+
+    }
 
 }

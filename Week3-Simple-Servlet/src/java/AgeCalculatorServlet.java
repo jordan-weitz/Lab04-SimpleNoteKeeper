@@ -48,6 +48,7 @@ public class AgeCalculatorServlet extends HttpServlet {
                 request.setAttribute("message", "Invalid Entry. Please enter a valid age");
                 // if empty/null this returns the user to the form page
                 getServletContext().getRequestDispatcher("/WEB-INF/AgeCalculator.jsp").forward(request, response);
+                return;
             }
 
             getServletContext().getRequestDispatcher("/WEB-INF/AgeCalculator.jsp").forward(request, response);

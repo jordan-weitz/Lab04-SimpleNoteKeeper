@@ -20,10 +20,10 @@
         <label>Second: </label>
         <input type="text" name="second_num" value="${secondNum}">
         <br>
-        <input type="submit" value="+" name="plus">
-        <input type="submit" value="-" name="minus">
-        <input type="submit" value="*" name="times">
-        <input type="submit" value="%" name="modulus">
+        <input type="submit" value="plus" name="calc">
+        <input type="submit" value="minus" name="calc">
+        <input type="submit" value="times" name="calc">
+        <input type="submit" value="mod" name="calc">
         </form>
         
         <p>${message}</p>
