@@ -41,10 +41,17 @@ public class ArithmeticCalculatorServlet extends HttpServlet {
 
         try {
 
+            // I had problems getting this code to work because if a null 
+//            or a String value was entered the code would exit the try/catch
+//              without assinging the values to the attributes so I first took the 
+//              values as a string, assigned the attributes and then parsed the string values
+//              which then may set off the catch block.
+            String firstString = request.getParameter("first_num");
+            String secondString = request.getParameter("second_num");
+            request.setAttribute("firstNum", firstString);
+            request.setAttribute("secondNum", secondString);
             firstnum = Integer.parseInt(request.getParameter("first_num"));
             secondnum = Integer.parseInt(request.getParameter("second_num"));
-            request.setAttribute("firstNum", firstnum);
-            request.setAttribute("secondNum", secondnum);
 
             if (calc != null && calc.equals("plus")) {
                 int result = firstnum + secondnum;
